@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\School\\1651\\Tree1651PJ\\Tree1651PJ\\Tree1651PJ.csproj": {}
+    "D:\\School\\1651\\Tree1651PJ\\1651_StrategyDesignPattern\\Tree1651PJ\\Tree1651PJ.csproj": {}
   },
   "projects": {
-    "D:\\School\\1651\\Tree1651PJ\\Tree1651PJ\\Tree1651PJ.csproj": {
+    "D:\\School\\1651\\Tree1651PJ\\1651_StrategyDesignPattern\\Tree1651PJ\\Tree1651PJ.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\School\\1651\\Tree1651PJ\\Tree1651PJ\\Tree1651PJ.csproj",
+        "projectUniqueName": "D:\\School\\1651\\Tree1651PJ\\1651_StrategyDesignPattern\\Tree1651PJ\\Tree1651PJ.csproj",
         "projectName": "Tree1651PJ",
-        "projectPath": "D:\\School\\1651\\Tree1651PJ\\Tree1651PJ\\Tree1651PJ.csproj",
+        "projectPath": "D:\\School\\1651\\Tree1651PJ\\1651_StrategyDesignPattern\\Tree1651PJ\\Tree1651PJ.csproj",
         "packagesPath": "C:\\Users\\krumm\\.nuget\\packages\\",
-        "outputPath": "D:\\School\\1651\\Tree1651PJ\\Tree1651PJ\\obj\\",
+        "outputPath": "D:\\School\\1651\\Tree1651PJ\\1651_StrategyDesignPattern\\Tree1651PJ\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\krumm\\AppData\\Roaming\\NuGet\\NuGet.Config",

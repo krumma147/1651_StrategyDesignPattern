@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "TreeManagerConsoleApp/1.0.0": {
+        "dependencies": {
+          "TreeClassLibrary": "1.0.0"
+        },
+        "runtime": {
+          "TreeManagerConsoleApp.dll": {}
+        }
+      },
+      "TreeClassLibrary/1.0.0": {
+        "runtime": {
+          "TreeClassLibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TreeManagerConsoleApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TreeClassLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "TreeClassLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/TreeClassLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TreeClassLibrary.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "TreeClassLibrary/1.0.0": {
+      "type": "project",
+      "path": "../ClassLibrary/TreeClassLibrary.csproj",
+      "msbuildProject": "../ClassLibrary/TreeClassLibrary.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "TreeClassLibrary >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\krumm\\.nuget\\packages\\": {}
@@ -13,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\School\\1651\\Tree1651PJ\\Tree1651PJ\\Tree1651PJ.csproj",
-      "projectName": "Tree1651PJ",
-      "projectPath": "D:\\School\\1651\\Tree1651PJ\\Tree1651PJ\\Tree1651PJ.csproj",
+      "projectUniqueName": "D:\\School\\1651\\Tree1651PJ\\1651_StrategyDesignPattern\\Tree1651PJ\\TreeManagerConsoleApp.csproj",
+      "projectName": "TreeManagerConsoleApp",
+      "projectPath": "D:\\School\\1651\\Tree1651PJ\\1651_StrategyDesignPattern\\Tree1651PJ\\TreeManagerConsoleApp.csproj",
       "packagesPath": "C:\\Users\\krumm\\.nuget\\packages\\",
-      "outputPath": "D:\\School\\1651\\Tree1651PJ\\Tree1651PJ\\obj\\",
+      "outputPath": "D:\\School\\1651\\Tree1651PJ\\1651_StrategyDesignPattern\\Tree1651PJ\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\krumm\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -33,7 +52,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\School\\1651\\Tree1651PJ\\1651_StrategyDesignPattern\\ClassLibrary\\TreeClassLibrary.csproj": {
+              "projectPath": "D:\\School\\1651\\Tree1651PJ\\1651_StrategyDesignPattern\\ClassLibrary\\TreeClassLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

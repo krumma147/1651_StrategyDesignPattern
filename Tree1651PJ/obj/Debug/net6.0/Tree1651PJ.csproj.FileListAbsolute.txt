@@ -12,3 +12,10 @@ D:\School\1651\Tree1651PJ\Tree1651PJ\obj\Debug\net6.0\refint\Tree1651PJ.dll
 D:\School\1651\Tree1651PJ\Tree1651PJ\obj\Debug\net6.0\Tree1651PJ.pdb
 D:\School\1651\Tree1651PJ\Tree1651PJ\obj\Debug\net6.0\Tree1651PJ.genruntimeconfig.cache
 D:\School\1651\Tree1651PJ\Tree1651PJ\obj\Debug\net6.0\ref\Tree1651PJ.dll
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\Tree1651PJ\obj\Debug\net6.0\Tree1651PJ.GeneratedMSBuildEditorConfig.editorconfig
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\Tree1651PJ\obj\Debug\net6.0\Tree1651PJ.AssemblyInfoInputs.cache
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\Tree1651PJ\obj\Debug\net6.0\Tree1651PJ.AssemblyInfo.cs
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\Tree1651PJ\obj\Debug\net6.0\Tree1651PJ.csproj.CoreCompileInputs.cache
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\Tree1651PJ\obj\Debug\net6.0\Tree1651PJ.dll
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\Tree1651PJ\obj\Debug\net6.0\refint\Tree1651PJ.dll
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\Tree1651PJ\obj\Debug\net6.0\Tree1651PJ.pdb

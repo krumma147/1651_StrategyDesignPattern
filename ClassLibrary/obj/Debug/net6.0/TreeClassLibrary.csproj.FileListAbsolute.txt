@@ -1,0 +1,11 @@
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\ClassLibrary\bin\Debug\net6.0\TreeClassLibrary.deps.json
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\ClassLibrary\bin\Debug\net6.0\TreeClassLibrary.dll
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\ClassLibrary\bin\Debug\net6.0\TreeClassLibrary.pdb
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\ClassLibrary\obj\Debug\net6.0\TreeClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\ClassLibrary\obj\Debug\net6.0\TreeClassLibrary.AssemblyInfoInputs.cache
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\ClassLibrary\obj\Debug\net6.0\TreeClassLibrary.AssemblyInfo.cs
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\ClassLibrary\obj\Debug\net6.0\TreeClassLibrary.csproj.CoreCompileInputs.cache
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\ClassLibrary\obj\Debug\net6.0\TreeClassLibrary.dll
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\ClassLibrary\obj\Debug\net6.0\refint\TreeClassLibrary.dll
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\ClassLibrary\obj\Debug\net6.0\TreeClassLibrary.pdb
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\ClassLibrary\obj\Debug\net6.0\ref\TreeClassLibrary.dll
