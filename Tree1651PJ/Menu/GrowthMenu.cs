@@ -4,28 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tree1651PJ;
+using TreeClassLibrary;
 
 
 namespace TreeManagerConsoleApp.Menu
 {
     public class GrowthMenu
     {
-        public static void GrowthOption(List<Tree> Garden)
+        public void GrowthOption(Tree tree)
         {
-            Tree tree = HarvestMenu.SelectTree(Garden);
-			if (tree == null) return;
 			int option;
             do
             {
                 PrintMenu();
                 Console.WriteLine("Select growth tree option:");
-                option = Validate.InputInterger();
+                option = ConsoleCommons.InputInteger();
                 GrowthSelect(option, tree);
             } while (option != 0);
         }
 
-        public static void GrowthSelect(int option, Tree tree)
+        private void GrowthSelect(int option, Tree tree)
         {
             switch (option)
             {
@@ -46,7 +44,7 @@ namespace TreeManagerConsoleApp.Menu
             }
         }
 
-        public static void PrintMenu()
+        private void PrintMenu()
         {
 			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
 			Console.WriteLine("|				*______* Growth Tree Option Menu *______*				|");

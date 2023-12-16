@@ -1,10 +1,11 @@
 ﻿using ConsoleTables;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tree1651PJ;
+using TreeClassLibrary;
 
 namespace TreeManagerConsoleApp.Menu
 {
@@ -12,75 +13,84 @@ namespace TreeManagerConsoleApp.Menu
     {
 
         //input tree
-        public static Tree inputTree()
+        private Tree PlantTree()
         {
             Console.WriteLine("Enter the name of the tree:");
-            string name = Validate.InputName();
+            var name = ConsoleCommons.InputName();
 
-            Console.WriteLine("Enter the number of fruits:");
-            int fruits = Validate.InputInterger();
-
-            Console.WriteLine("Enter the number of leafs:");
-            int leafs = Validate.InputInterger();
-
-            Console.WriteLine("Enter the height of the tree:");
-            double height = Validate.InputDouble();
-
-            Console.WriteLine("Enter the health status of the tree (1 for Good, 2 for Fair, 3 for Poor):");
-            var healthStatus = (HealthStatus)Validate.InputInterger(); // Input tree health status
-            var tree = new Tree(fruits, leafs, name, height, healthStatus);
+            // Console.WriteLine("Enter the number of fruits:");
+            // int fruits = ConsoleCommons.InputInterger();
+            //
+            // Console.WriteLine("Enter the number of leafs:");
+            // int leafs = ConsoleCommons.InputInterger();
+            //
+            // Console.WriteLine("Enter the height of the tree:");
+            // double height = ConsoleCommons.InputDouble();
+            //
+            // Console.WriteLine("Enter the health status of the tree (1 for Good, 2 for Fair, 3 for Poor):");
+            // var healthStatus = (HealthStatus)ConsoleCommons.InputInterger(); // Input tree health status
+            var tree = new Tree(name);
             return tree;
         }
 
         //plant tree
-        public static void plantTree(List<Tree> Garden)
-        {
-            Garden.Add(inputTree());
-        }
+        // private void PlantTree(List<Tree> garden)
+        // {
+        //     garden.Add(InputTree());
+        // }
 
         //plant tree in empty index of graden
-        public static void quickPlant(List<Tree> Garden)
+        private void QuickPlant(List<Tree> garden)
         {
-			Tree tree = new Tree();
-			Garden.Add(tree);
+			garden.Add(new Tree());
 		}
 
-        public static void PlantOption(List<Tree> Garden)
+        public IEnumerable<Tree> PlantOption(List<Tree> garden)
         {
 			//Console.WriteLine("");
 			//Console.BackgroundColor = ConsoleColor.DarkBlue;
+			var newTrees = new List<Tree>();
 			int option;
 			do
             {
                 PrintMenu();
                 Console.WriteLine("Select plant tree option:");
-                option = Validate.InputInterger();
-                PlantSelect(option, Garden);
+                option = ConsoleCommons.InputInteger();
+                var newTree = PlantTree(option);
+                if (newTree != null)
+                {
+	                newTrees.Add(newTree);
+                }
                 /*Console.Clear();*/
             } while (option != 0);
 			//Console.ResetColor();
 			//Console.WriteLine();
-		}
+			return newTrees;
+        }
 
-        public static void PlantSelect(int option, List<Tree> Garden)
+        private Tree? PlantTree(int option)
         {
+	        Tree? tree = null;
             switch (option)
             {
                 case 0:
                     Console.WriteLine("Exit the plan tree menu");
-                    return;
+                    break;
                 case 1:
-                    plantTree(Garden);
-                    Console.WriteLine($"New Tree added, garden have {Garden.Count} trees");
-                    return;
+                    tree = PlantTree();
+                    Console.WriteLine($"New Tree added");
+                    return tree;
                 case 2:
-                    quickPlant(Garden);
-					Console.WriteLine($"New Tree added, garden have {Garden.Count} trees");
+     //                QuickPlant(garden);
+					// Console.WriteLine($"New Tree added, garden have {garden.Count} trees");
 					break;
+
             }
+
+            return tree;
         }
 
-        public static void PrintMenu()
+        private void PrintMenu()
         {
 			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
 			Console.WriteLine("|				*______* Plant Tree Option Menu *______*				|");

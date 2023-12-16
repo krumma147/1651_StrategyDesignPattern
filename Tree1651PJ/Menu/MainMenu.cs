@@ -1,19 +1,29 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ConsoleTables;
-using Tree1651PJ;
+﻿using ConsoleTables;
+using TreeClassLibrary;
+using TreeClassLibrary.Products;
 
 namespace TreeManagerConsoleApp.Menu
 {
+    
     public class MainMenu
     {
-        public static void MenuOption(List<Tree> Garden)
+        private List<Tree> _trees;
+        private List<Product> _products;
+        private readonly GrowthMenu _growthMenu;
+        private readonly PlantMenu _plantMenu;
+        private readonly HarvestMenu _harvestMenu;
+
+        public MainMenu()
         {
-            int option = -1;
+            _trees = new List<Tree>();
+            _products = new List<Product>();
+            _growthMenu = new GrowthMenu();
+            _plantMenu = new PlantMenu();
+            _harvestMenu = new HarvestMenu();
+        }
+        public void MainProgram()
+        {
+            var option = -1;
             do
             {
                 PrintMainMenu();
@@ -21,17 +31,18 @@ namespace TreeManagerConsoleApp.Menu
                 //validate option
                 try
                 {
-                    option = Validate.InputInterger();
-                    MainMenuSelect(option, Garden);
+                    option = ConsoleCommons.InputInteger();
+                    MainMenuSelect(option);
                 }
                 catch (FormatException)
                 {
                     Console.WriteLine("Invalid input, please enter a valid number.");
-                    continue;
+                    //continue is redundant;
                 }
             } while (option != 0);
         }
-        public static void MainMenuSelect(int option, List<Tree> Garden)
+
+        private void MainMenuSelect(int option)
         {
             switch (option)
             {
@@ -39,19 +50,29 @@ namespace TreeManagerConsoleApp.Menu
                     Console.WriteLine("Exit the program");
                     return;
                 case 1:
-                    PlantMenu.PlantOption(Garden);
+                    _trees.AddRange(_plantMenu.PlantOption(_trees));
                     break;
                 case 2:
-                    GrowthMenu.GrowthOption(Garden);
+                    var tree = SelectTree();
+                    if (tree != null)
+                    {
+                        _growthMenu.GrowthOption(tree);
+                    }
+
                     break;
                 case 3:
-                    HarvestMenu.Menu(Garden);
+                    var harvestedTree = SelectTree();
+                    if (harvestedTree != null)
+                    {
+                        _harvestMenu.Harvest(harvestedTree);
+                    }
+                   
                     break;
                 case 4:
-                    TreeStatusOption(Garden);
+                    TreeStatusOption();
                     break;
                 case 5:
-                    ClearConsole();
+                    ConsoleCommons.ClearConsole();
                     break;
                 default:
                     Console.WriteLine("Other!");
@@ -59,7 +80,7 @@ namespace TreeManagerConsoleApp.Menu
             }
         }
 
-        public static void PrintMainMenu()
+        private void PrintMainMenu()
         {
 			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
 			Console.WriteLine("|				*______* Tree Management Menu *______*				|");
@@ -77,9 +98,9 @@ namespace TreeManagerConsoleApp.Menu
 			table.Write(Format.Alternative);
 		}
 
-        public static void TreeStatusOption(List<Tree> Garden)
+        private void TreeStatusOption()
         {
-            if(Garden.Count <= 0)
+            if(_trees.Count <= 0)
             {
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("There are no tree in the garden!");
@@ -91,20 +112,36 @@ namespace TreeManagerConsoleApp.Menu
 			Console.WriteLine("|				*______* All Tree Status *______*				|");
 			Console.WriteLine("|------------------------------------------------------|");
 			var table = new ConsoleTable("No.", "Tree Name", "Number of Fruits", "Number of Leafs", "Tree Height (meters)", "Health Status");
-			for (int i = 0; i< Garden.Count; i++)
+			for (var i = 0; i< _trees.Count; i++)
             {
-				table.AddRow(i+1 ,Garden[i].Name, Garden[i].Fruits, Garden[i].Leafs, Garden[i].Height, Garden[i].HealthStatus);
+				table.AddRow(i+1 ,_trees[i].Name, _trees[i].Fruits, _trees[i].Leafs, _trees[i].Weight, _trees[i].HealthStatus);
 			}
 			table.Write(Format.Alternative);
             
             Console.ResetColor();
 			Console.WriteLine();
 		}
-
-        public static void ClearConsole()
+        
+        private Tree? SelectTree() // Nullable
         {
-            Console.Clear();
-            Console.SetCursorPosition(0, 0); /*FIXME: Con trỏ chuột chưa về trên cùng*/
+            try
+            {
+                if (_trees.Count <= 0)
+                {
+                    Console.WriteLine($"There are {_trees.Count} tree in the garden, plant some tree first");
+                    return null;
+                }
+
+                Console.WriteLine($"There are {_trees.Count} tree in the garden, select tree you want to harvest:");
+                var index = ConsoleCommons.InputInteger();
+                return _trees[index - 1];
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"The index you've entered is out of tree indexes range");
+            }
+
+            return null;
         }
     }
 }
