@@ -12,12 +12,18 @@ namespace TreeClassLibrary.Product
         private string color;
         public string Hardness { get => hardness; set => value = hardness; }
         public string Color { get => color; set => value = color; }
+        public double amount;
         public Wood()
         {
 
         }
 
-        public void MakeFurniture()
+		public Wood(double amount)
+		{
+            this.amount = amount;
+		}
+
+		public void MakeFurniture()
         {
             // furniture making logic
         }

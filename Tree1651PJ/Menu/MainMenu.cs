@@ -10,12 +10,12 @@ namespace TreeManagerConsoleApp.Menu
 {
     public class MainMenu
     {
-        public static void MenuOption(Farmer farmer, List<Tree> Garden)
+        public static void MenuOption(List<Tree> Garden)
         {
             int option = -1;
             do
             {
-                PrintMainMenu(farmer);
+                PrintMainMenu();
                 Console.WriteLine("Select your option here:");
                 //validate option
                 try
@@ -58,13 +58,12 @@ namespace TreeManagerConsoleApp.Menu
             }
         }
 
-        public static void PrintMainMenu(Farmer farmer)
+        public static void PrintMainMenu()
         {
             Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
             Console.WriteLine("|				*______* Tree Management Menu *______*				|");
             Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
-            Console.WriteLine($"\nWelcome {farmer.Name} - {farmer.Gender}!\n");
-            Console.WriteLine("|-----------------------------------------------------------------------------------------------|\n");
+            //Console.WriteLine("|-----------------------------------------------------------------------------------------------|\n");
             Console.WriteLine("1. Plant Tree");
             Console.WriteLine("2. Growth Tree");
             Console.WriteLine("3. Harvest Tree");
@@ -76,11 +75,10 @@ namespace TreeManagerConsoleApp.Menu
         public static void TreeStatusOption(List<Tree> Garden)
         {
             int option;
-
             //Console.WriteLine("Tree status option!");
-            foreach (Tree tree in Garden)
+            for (int i = 0; i< Garden.Count; i++)
             {
-                Console.WriteLine(tree.GetTreeStatus());
+                Console.WriteLine($"{i+1}. {Garden[i].GetTreeStatus()}");
             }
         }
 

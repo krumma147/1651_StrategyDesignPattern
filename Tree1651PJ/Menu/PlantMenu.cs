@@ -38,12 +38,11 @@ namespace TreeManagerConsoleApp.Menu
         }
 
         //plant tree in empty index of graden
-        public static void plantIndexTree(List<Tree> Graden, int index)
+        public static void quickPlant(List<Tree> Garden) // Fix into quick plant
         {
-            Console.WriteLine("Enter the location in the garden");
-            index = Validate.InputInterger();
-            Graden.Insert(index, inputTree());
-        }
+			Tree tree = new Tree();
+			Garden.Add(tree);
+		}
 
         public static void PlantOption(List<Tree> Garden)
         {
@@ -70,9 +69,8 @@ namespace TreeManagerConsoleApp.Menu
                     Console.WriteLine("New Tree added");
                     return;
                 case 2:
-                    Tree tree = new Tree();
-                    Garden.Add(tree);
-                    Console.WriteLine("New Tree added at land index..");
+                    quickPlant(Garden);
+					Console.WriteLine("New Tree added");
                     break;
             }
         }
@@ -82,8 +80,8 @@ namespace TreeManagerConsoleApp.Menu
             Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
             Console.WriteLine("|				*______* Plant Tree Option Menu *______*				|");
             Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
-            Console.WriteLine("1. Plant New Tree");
-            Console.WriteLine("2. Plant New Tree at land index");
+            Console.WriteLine("1. Plant new tree");
+            Console.WriteLine("2. Quick plan new tree");
             Console.WriteLine("0. Return to main menu");
         }
     }

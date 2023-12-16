@@ -17,7 +17,12 @@ namespace TreeClassLibrary.Product
         {
 
         }
-        public void Use()
+
+		public Fruit(int amount)
+		{
+            this.amount = amount;
+		}
+		public void Use()
         {
             //logic
         }

@@ -24,8 +24,10 @@ namespace TreeManagerConsoleApp
 				name = Console.ReadLine();
 				if (!IsValidName(name))
 				{
-					Console.WriteLine("Invalid name! Please enter a name with letters only (a-z).");
-				}
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid name! Please enter a name with letters only (a-z).");
+                    Console.ResetColor();
+                }
 			} while (!IsValidName(name));
 
 			return name;
@@ -43,8 +45,10 @@ namespace TreeManagerConsoleApp
 					option = int.Parse(Console.ReadLine());
 					if (option < 0)
 					{
-						Console.WriteLine("Please enter a non-negative number.");
-					}
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Please enter a non-negative number.");
+                        Console.ResetColor();
+                    }
 					else
 					{
 						isValidInput = true;
@@ -52,8 +56,10 @@ namespace TreeManagerConsoleApp
 				}
 				catch (FormatException)
 				{
-					Console.WriteLine("Invalid input, please enter a valid number.");
-				}
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid input, please enter a valid number.");
+                    Console.ResetColor();
+                }
 			} while (!isValidInput);
 
 			return option;
@@ -102,5 +108,20 @@ namespace TreeManagerConsoleApp
 			} while (gender.ToLower() != "m" && gender.ToLower() != "f" && gender.ToLower() != "male" && gender.ToLower() != "female");
 			return result;
 		}
+		public static bool ValidateHarvestAmount(double treeResources, double harvestAmount)
+		{
+			if (harvestAmount == treeResources)
+			{
+				Console.WriteLine($"Harvested all resources, do you want to proceed? (Y/N)");
+				string confirm = Console.ReadLine();
+				if(confirm.ToLower() == "yes" || confirm.ToLower() == "y") return true;
+				else if(confirm.ToLower() == "no" || confirm.ToLower() == "n") return false;
+			}else if (harvestAmount > treeResources)
+			{
+				Console.WriteLine($"Tree do not have enough of resources, please growth tree more");
+				return false;
+			}
+			return true;
+        }
 	}
 }

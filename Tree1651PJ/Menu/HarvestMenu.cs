@@ -26,19 +26,36 @@ namespace TreeManagerConsoleApp.Menu
 
         public static void Select(int option, Tree tree)
         {
+            double amount = 0.0f;
             switch (option)
             {
                 case 0:
                     break;
                 case 1:
-                    Console.WriteLine("Harvest Fruit");
-                    //WoodHarvestStrategy;
-                    break;
+                    tree.SetHarvestStrategy(new FruitHarvestStrategy());
+					Console.WriteLine("Amount of fruit want to harvest?");
+					amount = Validate.InputDouble();
+                    if(Validate.ValidateHarvestAmount(Convert.ToDouble(tree.Fruits), amount)) {
+                        tree.Harvest(amount);
+                    }
+					//tree.Harvest(amount);
+					break;
                 case 2:
-                    Console.WriteLine("Harvest Wood");
-                    break;
+                    tree.SetHarvestStrategy(new WoodHarvestStrategy());
+					Console.WriteLine("Amount of wood want to harvest?");
+                    if (Validate.ValidateHarvestAmount(tree.Height, amount))
+                    {
+                        tree.Harvest(amount);
+                    }
+                    //tree.Harvest(amount);
+					break;
                 case 3:
-                    Console.WriteLine("Harvest Medicine");
+					tree.SetHarvestStrategy(new MedicineHarvestStrategy());
+					Console.WriteLine("Amount of medicine want to harvest?");
+                    if (Validate.ValidateHarvestAmount(tree.Leafs, amount))
+                    {
+                        tree.Harvest(amount);
+                    }
                     break;
             }
         }
@@ -60,6 +77,8 @@ namespace TreeManagerConsoleApp.Menu
 			int index = Validate.InputInterger() -1;
 			return Garden[index];
         }
+
+
     }
 }
  

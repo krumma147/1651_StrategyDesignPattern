@@ -19,14 +19,7 @@ namespace TreeManagerConsoleApp
         static void Main(string[] args)
 		{
 			// Display the number of command line arguments.
-			
-			Farmer farmer = new Farmer();
-            Console.WriteLine("Farmer Name: ");
-			farmer.Name = Validate.InputName();
-
-			farmer.Gender = Validate.InputGender();
-
-			MainMenu.MenuOption(farmer, Garden);
+			MainMenu.MenuOption(Garden);
 		}
 
 	}

@@ -10,14 +10,21 @@ namespace TreeClassLibrary.Product
     {
         private string usage;
         private string medicineType;
-        public string Usage { get => usage; set => value = usage; }
+		private double amount;
+		public string Usage { get => usage; set => value = usage; }
         public string MedicineType { get => medicineType; set => value = medicineType; }
 
         public Medicine()
         {
 
         }
-        public void MakeProduct()
+
+		public Medicine(double amount)
+		{
+            this.amount = amount;
+		}
+
+		public void MakeProduct()
         {
             //  product making logic
         }
