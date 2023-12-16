@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tree1651PJ;
+using TreeClassLibrary.Strategy;
+//using TreeManagerConsoleAp;
 
 namespace Tree1651PJ
 {
@@ -46,11 +49,24 @@ namespace Tree1651PJ
             HealthStatus = healthStatus;
         }
 
+        //private static void CountTime()
+        //{
+        //    int secondsPassed = 0;
+        //    while (secondsPassed < 30)
+        //    {
+        //        Thread.Sleep(1000); // Đợi 1 giây
+        //        secondsPassed++;
+        //        Console.WriteLine($"Has passed: {secondsPassed} days");
+        //    }
+        //    Console.WriteLine("After a month: ");
+        //}
+
         public IHarvestStrategy Harvest() => Harvest();
 
         public void Fertilizing()
         {
             Console.WriteLine("Added Fertilize to tree!");
+            //Utility.CountTime();
             this.fruits += 3;
             this.leafs += 2;
             this.Height += 1;
@@ -58,18 +74,20 @@ namespace Tree1651PJ
 
         public void AbsorbCO2()
         {
-			this.leafs += 3;
+            //CountTime();
+            this.leafs += 3;
 			this.Height += 1;
 		}
 
         public void Watering()
         {
-			this.Height += 2;
+            //CountTime();
+            this.Height += 2;
 		}
 
         public string GetTreeStatus()
         {
-            return $"Tree {Name} have {Fruits} fruits, {Leafs} leafs, {Height} meters tall and have status of {HealthStatus}";
+            return $"Tree {Name} have {Fruits} fruits, {Leafs} leafs, {Height} meters tall and have {HealthStatus} status";
         }
 
     }

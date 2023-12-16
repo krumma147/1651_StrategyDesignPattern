@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TreeClassLibrary.Product;
 
-namespace Tree1651PJ
+namespace TreeClassLibrary.Strategy
 {
     public class FruitHarvestStrategy : IHarvestStrategy
     {

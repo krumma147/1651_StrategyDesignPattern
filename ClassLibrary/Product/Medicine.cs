@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tree1651PJ
+namespace TreeClassLibrary.Product
 {
     internal class Medicine : IProduct
     {
         private string usage;
         private string medicineType;
-        public string Usage { get=>usage; set=> value = usage; }
-        public string MedicineType { get=> medicineType ; set => value = medicineType; }
+        public string Usage { get => usage; set => value = usage; }
+        public string MedicineType { get => medicineType; set => value = medicineType; }
 
         public Medicine()
         {
-            
+
         }
         public void MakeProduct()
         {

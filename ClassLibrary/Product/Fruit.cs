@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tree1651PJ
+namespace TreeClassLibrary.Product
 {
     public class Fruit : IProduct
     {
@@ -15,7 +15,7 @@ namespace Tree1651PJ
 
         public Fruit()
         {
-            
+
         }
         public void Use()
         {

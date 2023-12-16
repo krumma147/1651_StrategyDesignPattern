@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tree1651PJ
+namespace TreeClassLibrary.Product
 {
-    public interface IHarvestStrategy
+    public interface IProduct
     {
-        IProduct Harvest();
+        void Use();
     }
 }

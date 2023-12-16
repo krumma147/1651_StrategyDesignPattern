@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TreeClassLibrary.Product;
 
-namespace Tree1651PJ
+namespace TreeClassLibrary.Strategy
 {
-    public interface IProduct
+    public interface IHarvestStrategy
     {
-        void Use();
+        IProduct Harvest();
     }
 }

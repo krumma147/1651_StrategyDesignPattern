@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tree1651PJ
+namespace TreeClassLibrary.Product
 {
     public class Wood : IProduct
     {
@@ -14,7 +14,7 @@ namespace Tree1651PJ
         public string Color { get => color; set => value = color; }
         public Wood()
         {
-            
+
         }
 
         public void MakeFurniture()
