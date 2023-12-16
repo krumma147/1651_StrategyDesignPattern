@@ -19,10 +19,7 @@ namespace TreeClassLibrary.Strategy
 				return null;
             }
 			tree.Height = remain;
-			if (tree.Height <= 2)
-			{
-				tree.HealthStatus = HealthStatus.LackWater;
-			}
+			tree.HealthStatus = tree.UpdateTreeStatus();
 			Console.ForegroundColor = ConsoleColor.DarkYellow;
 			Console.WriteLine($"Harvested {amount} killogram of woods, tree have {tree.Height} killogram left.");
 			tree.GetTreeStatus();

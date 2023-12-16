@@ -14,8 +14,9 @@ namespace Tree1651PJ
     {
         Good = 1, 
         LackFertilize = 2, 
-        LackWater = 3, 
-        Bad = 4
+        LackWater = 3,
+		LackCo2 = 4,
+		Bad = 5
     } // Adding bad status
     public class Tree
     {
@@ -42,7 +43,7 @@ namespace Tree1651PJ
 			Fruits = 5;
 			Leafs = 10;
 			Name = "Indochina Dragonplum Tree";
-			Height = 2;
+			Height = 5;
 			HealthStatus = HealthStatus.Good;
 		}
 
@@ -60,11 +61,11 @@ namespace Tree1651PJ
         private static void CountTime()
         {
             int secondsPassed = 0;
-            while (secondsPassed < 15)
+            while (secondsPassed < 5)
             {
                 Thread.Sleep(1000); // Đợi 1 giây
                 secondsPassed++;
-                Console.WriteLine($"Has passed: {secondsPassed} days");
+                Console.WriteLine($"Has passed: {secondsPassed} months");
             }
             Console.WriteLine("After a month: ");
         }
@@ -72,33 +73,33 @@ namespace Tree1651PJ
         public void Fertilizing()
         {
             CountTime();
-            this.fruits += 3;
-            this.leafs += 2;
-            this.Height += 1;
-            if( this.healthStatus == HealthStatus.LackFertilize)
-            {
-                this.healthStatus = HealthStatus.Good;
-            }
-            Console.WriteLine(GetTreeStatus());
+			Fruits += 3;
+			Leafs += 4;
+			Height += 2;
+			HealthStatus = UpdateTreeStatus();
+			Console.WriteLine(GetTreeStatus());
 
 		}
 
         public void AbsorbCO2()
         {
             CountTime();
-            this.leafs += 3;
-			this.Height += 1;
+			Leafs += 2;
+			Height += 1;
+			HealthStatus = UpdateTreeStatus();
 			Console.WriteLine(GetTreeStatus());
 		}
 
         public void Watering()
         {
             CountTime();
-            this.Height += 2;
-			if (this.healthStatus == HealthStatus.LackWater)
+			Height += 2;
+			if (Height >= 10)
 			{
-				this.healthStatus = HealthStatus.Good;
+				Console.WriteLine("Tree reach maximun height");
+                Height = 10;
 			}
+			healthStatus = UpdateTreeStatus();
 			Console.WriteLine(GetTreeStatus());
 		}
 
@@ -113,5 +114,26 @@ namespace Tree1651PJ
 			Console.WriteLine($"Harvested: {product.GetType().Name}");
 		}
 
+        public HealthStatus UpdateTreeStatus()
+        {
+            HealthStatus output = HealthStatus.Good;
+
+            if (fruits <= 2 && leafs <= 3 && height <= 1)
+            {
+                output = HealthStatus.Bad;
+            } else if (fruits < 3)
+            {
+				output = HealthStatus.LackFertilize;
+			} else if (leafs < 5)
+            {
+                output = HealthStatus.LackCo2;
+            }
+            else if (height < 3)
+            {
+                output = HealthStatus.LackWater;
+            }
+            return output;
+
+		}
 	}
 }

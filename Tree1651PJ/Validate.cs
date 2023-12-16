@@ -77,8 +77,10 @@ namespace TreeManagerConsoleApp
 					number = double.Parse(Console.ReadLine());
 					if (number < 0)
 					{
-						Console.WriteLine("Please enter a non-negative number.");
-					}
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Please enter a non-negative number.");
+                        Console.ResetColor();
+                    }
 					else
 					{
 						isValidInput = true;
@@ -86,28 +88,15 @@ namespace TreeManagerConsoleApp
 				}
 				catch (FormatException)
 				{
-					Console.WriteLine("Invalid input, please enter a valid number.");
-				}
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid input, please enter a valid number.");
+                    Console.ResetColor();
+                }
 			} while (!isValidInput);
 
 			return number;
 		}
 
-		public static bool InputGender()
-		{
-			string gender = "";
-			bool result;
-			do
-			{
-				Console.WriteLine("Input farmer gender (M/F): ");
-				gender = Console.ReadLine();
-				if (gender.ToLower() == "m" || gender.ToLower() == "male")
-					result = true;
-				else
-					result = false;
-			} while (gender.ToLower() != "m" && gender.ToLower() != "f" && gender.ToLower() != "male" && gender.ToLower() != "female");
-			return result;
-		}
 		public static bool ValidateHarvestAmount(double treeResources, double harvestAmount)
 		{
 			if (harvestAmount == treeResources)
@@ -118,8 +107,10 @@ namespace TreeManagerConsoleApp
 				else if(confirm.ToLower() == "no" || confirm.ToLower() == "n") return false;
 			}else if (harvestAmount > treeResources)
 			{
-				Console.WriteLine($"Tree do not have enough of resources, please growth tree more");
-				return false;
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine($"Can't harvest over {treeResources} resources!");
+                Console.ResetColor();
+                return false;
 			}
 			return true;
         }

@@ -19,11 +19,8 @@ namespace TreeClassLibrary.Strategy
 				return null;
 			}
 			tree.Fruits = remain;
-			if(tree.Fruits <= 1)
-			{
-				tree.HealthStatus = HealthStatus.LackFertilize;
-			}
-			Console.ForegroundColor = ConsoleColor.Yellow;
+			tree.HealthStatus = tree.UpdateTreeStatus();
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
 			Console.WriteLine($"Harvested {amount} of fruits, tree have {tree.Fruits} of fruits left.");
             Console.WriteLine(tree.GetTreeStatus());
 			Console.ResetColor();

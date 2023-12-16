@@ -26,12 +26,11 @@ namespace TreeClassLibrary.Strategy
 			}
 
 			tree.Leafs = remain;
-			if (tree.Leafs <= 2)
-			{
-				tree.HealthStatus = HealthStatus.Bad;
-			}
+			tree.HealthStatus = tree.UpdateTreeStatus();
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
 			Console.WriteLine($"Harvested {amount} killogram of woods, tree have {tree.Height} killogram left.");
 			Console.WriteLine(tree.GetTreeStatus());
+			Console.ResetColor();
 			return new Medicine(amount);
 		}
 

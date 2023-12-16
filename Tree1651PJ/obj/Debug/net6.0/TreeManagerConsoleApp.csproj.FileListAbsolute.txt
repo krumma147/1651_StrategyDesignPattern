@@ -16,3 +16,4 @@ D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\Tree1651PJ\obj\Debug\net6.0
 D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\Tree1651PJ\obj\Debug\net6.0\TreeManagerConsoleApp.pdb
 D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\Tree1651PJ\obj\Debug\net6.0\TreeManagerConsoleApp.genruntimeconfig.cache
 D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\Tree1651PJ\obj\Debug\net6.0\ref\TreeManagerConsoleApp.dll
+D:\School\1651\Tree1651PJ\1651_StrategyDesignPattern\Tree1651PJ\bin\Debug\net6.0\ConsoleTables.dll

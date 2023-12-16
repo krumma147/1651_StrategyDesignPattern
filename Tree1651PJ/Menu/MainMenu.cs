@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleTables;
 using Tree1651PJ;
 
 namespace TreeManagerConsoleApp.Menu
@@ -60,27 +61,45 @@ namespace TreeManagerConsoleApp.Menu
 
         public static void PrintMainMenu()
         {
-            Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
-            Console.WriteLine("|				*______* Tree Management Menu *______*				|");
-            Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
-            //Console.WriteLine("|-----------------------------------------------------------------------------------------------|\n");
-            Console.WriteLine("1. Plant Tree");
-            Console.WriteLine("2. Growth Tree");
-            Console.WriteLine("3. Harvest Tree");
-            Console.WriteLine("4. Tree Status");
-            Console.WriteLine("5. Clear Console");
-            Console.WriteLine("0. Exit");
-        }
+			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
+			Console.WriteLine("|				*______* Tree Management Menu *______*				|");
+			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
+
+			var table = new ConsoleTable("Option", "Description");
+
+			table.AddRow("1", "Plant Tree");
+			table.AddRow("2", "Growth Tree");
+			table.AddRow("3", "Harvest Tree");
+			table.AddRow("4", "Tree Status");
+			table.AddRow("5", "Clear Console");
+			table.AddRow("0", "Exit");
+
+			table.Write(Format.Alternative);
+		}
 
         public static void TreeStatusOption(List<Tree> Garden)
         {
-            int option;
-            //Console.WriteLine("Tree status option!");
-            for (int i = 0; i< Garden.Count; i++)
+            if(Garden.Count <= 0)
             {
-                Console.WriteLine($"{i+1}. {Garden[i].GetTreeStatus()}");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("There are no tree in the garden!");
+                Console.ResetColor();
+                return;
             }
-        }
+			Console.BackgroundColor = ConsoleColor.DarkGreen;
+			Console.WriteLine("\n|------------------------------------------------------|");
+			Console.WriteLine("|				*______* All Tree Status *______*				|");
+			Console.WriteLine("|------------------------------------------------------|");
+			var table = new ConsoleTable("No.", "Tree Name", "Number of Fruits", "Number of Leafs", "Tree Height (meters)", "Health Status");
+			for (int i = 0; i< Garden.Count; i++)
+            {
+				table.AddRow(i+1 ,Garden[i].Name, Garden[i].Fruits, Garden[i].Leafs, Garden[i].Height, Garden[i].HealthStatus);
+			}
+			table.Write(Format.Alternative);
+            
+            Console.ResetColor();
+			Console.WriteLine();
+		}
 
         public static void ClearConsole()
         {

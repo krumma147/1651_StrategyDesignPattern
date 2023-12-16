@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleTables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,7 @@ namespace TreeManagerConsoleApp.Menu
         }
 
         //plant tree in empty index of graden
-        public static void quickPlant(List<Tree> Garden) // Fix into quick plant
+        public static void quickPlant(List<Tree> Garden)
         {
 			Tree tree = new Tree();
 			Garden.Add(tree);
@@ -46,8 +47,10 @@ namespace TreeManagerConsoleApp.Menu
 
         public static void PlantOption(List<Tree> Garden)
         {
-            int option;
-            do
+			//Console.WriteLine("");
+			//Console.BackgroundColor = ConsoleColor.DarkBlue;
+			int option;
+			do
             {
                 PrintMenu();
                 Console.WriteLine("Select plant tree option:");
@@ -55,7 +58,9 @@ namespace TreeManagerConsoleApp.Menu
                 PlantSelect(option, Garden);
                 /*Console.Clear();*/
             } while (option != 0);
-        }
+			//Console.ResetColor();
+			//Console.WriteLine();
+		}
 
         public static void PlantSelect(int option, List<Tree> Garden)
         {
@@ -66,23 +71,28 @@ namespace TreeManagerConsoleApp.Menu
                     return;
                 case 1:
                     plantTree(Garden);
-                    Console.WriteLine("New Tree added");
+                    Console.WriteLine($"New Tree added, garden have {Garden.Count} trees");
                     return;
                 case 2:
                     quickPlant(Garden);
-					Console.WriteLine("New Tree added");
-                    break;
+					Console.WriteLine($"New Tree added, garden have {Garden.Count} trees");
+					break;
             }
         }
 
         public static void PrintMenu()
         {
-            Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
-            Console.WriteLine("|				*______* Plant Tree Option Menu *______*				|");
-            Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
-            Console.WriteLine("1. Plant new tree");
-            Console.WriteLine("2. Quick plan new tree");
-            Console.WriteLine("0. Return to main menu");
-        }
+			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
+			Console.WriteLine("|				*______* Plant Tree Option Menu *______*				|");
+			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
+
+			var table = new ConsoleTable("Option", "Description");
+
+			table.AddRow("1", "Plant new tree");
+			table.AddRow("2", "Quick plant new tree");
+			table.AddRow("0", "Return to main menu");
+
+			table.Write(Format.Alternative);
+		}
     }
 }

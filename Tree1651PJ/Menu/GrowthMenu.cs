@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleTables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,8 @@ namespace TreeManagerConsoleApp.Menu
         public static void GrowthOption(List<Tree> Garden)
         {
             Tree tree = HarvestMenu.SelectTree(Garden);
-            int option;
+			if (tree == null) return;
+			int option;
             do
             {
                 PrintMenu();
@@ -46,13 +48,18 @@ namespace TreeManagerConsoleApp.Menu
 
         public static void PrintMenu()
         {
-            Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
-            Console.WriteLine("|				*______* Growth Tree Option Menu *______*				|");
-            Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
-            Console.WriteLine("1. Water the plant");
-            Console.WriteLine("2. Fertilize the plant");
-            Console.WriteLine("3. Provide CO2");
-            Console.WriteLine("0. Return to main menu");
-        }
+			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
+			Console.WriteLine("|				*______* Growth Tree Option Menu *______*				|");
+			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
+
+			var table = new ConsoleTable("Option", "Description");
+
+			table.AddRow("1", "Water the plant");
+			table.AddRow("2", "Fertilize the plant");
+			table.AddRow("3", "Provide CO2");
+			table.AddRow("0", "Return to main menu");
+
+			table.Write(Format.Alternative);
+		}
     }
 }
