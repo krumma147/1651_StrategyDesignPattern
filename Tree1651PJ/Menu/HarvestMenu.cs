@@ -3,135 +3,106 @@ using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using TreeClassLibrary;
 using TreeClassLibrary.Products;
 using TreeClassLibrary.Strategy;
-using TreeManagerConsoleApp.utils;
 
 namespace TreeManagerConsoleApp.Menu
 {
     public class HarvestMenu
     {
-        private IHarvestStrategy _harvestStrategy;
+		private static IHarvestStrategy _harvestStrategy;
 
-        public HarvestMenu()
-        {
-            _harvestStrategy = new WoodHarvestStrategy();
-        }
+		public HarvestMenu()
+		{
+			_harvestStrategy = new WoodHarvestStrategy();
+		}
 
-        public IEnumerable<Product> Harvest(Tree tree)
+		public static void Menu(List<Tree> Garden, List<Product> Products)
         {
-            int option;
-            var products = new List<Product>();
-            do
+            Tree tree = SelectTree(Garden);
+			if (tree == null) return;
+
+			int option;
+			do
             {
                 PrintMenu();
                 Console.WriteLine("Select harvest tree option:");
-                option = ConsoleCommons.InputInteger();
-                products.AddRange(Harvest(option, tree));
+                option = Validate.InputInterger();
+                Select(option, tree, Products);
             } while (option != 0);
-
-            return products;
         }
 
-        private IEnumerable<Product> HarvestWithAmount(Tree tree, int amount)
+        public static void Select(int option, Tree tree, List<Product> Products)
         {
-            var products = _harvestStrategy.Harvest(tree, amount).ToList();
-            if (products.Any())
-            {
-                Console.WriteLine($"Harvested: {products[0].GetType().Name} with amount {amount}");
-            }
-
-            return products;
-        }
-
-        private IEnumerable<Product> Harvest(int option, Tree tree)
-        {
-            int amount;
+            double amount;
             switch (option)
             {
+                case 0:
+                    return;
                 case 1:
-                    _harvestStrategy = new FruitHarvestStrategy();
-                    Console.WriteLine("Amount of fruit want to harvest?");
-                    amount = ConsoleCommons.InputInteger();
-                    if (ValidateHarvestAmount(Convert.ToDouble(tree.Fruits), amount))
-                    {
-                        return HarvestWithAmount(tree, amount);
-                    }
-
-                    //tree.Harvest(amount);
-                    break;
+					_harvestStrategy = new FruitHarvestStrategy();
+					Console.WriteLine("Amount of fruit want to harvest?");
+					amount = Validate.InputDouble();
+                    if(Validate.ValidateHarvestAmount(Convert.ToDouble(tree.Fruits), amount)) {
+						List<Product> harvested = _harvestStrategy.Harvest(tree, amount);
+						Products.AddRange(harvested);
+					}
+					break;
                 case 2:
-                    _harvestStrategy = new WoodHarvestStrategy();
-                    Console.WriteLine("Amount of wood want to harvest?");
-                    amount = ConsoleCommons.InputInteger();
-                    if (ValidateHarvestAmount(tree.Weight, amount))
+					_harvestStrategy = new WoodHarvestStrategy();
+					Console.WriteLine("Amount of wood want to harvest?"); 
+					amount = Validate.InputDouble();
+					if (Validate.ValidateHarvestAmount(tree.Weight, amount))
                     {
-                        return HarvestWithAmount(tree, amount);
-                    }
-
-                    break;
+						List<Product> harvested = _harvestStrategy.Harvest(tree, amount);
+						Products.AddRange(harvested);
+					}
+					break;
                 case 3:
-                    _harvestStrategy = new MedicineHarvestStrategy();
-                    Console.WriteLine("Amount of medicine want to harvest?");
-                    amount = ConsoleCommons.InputInteger();
-                    if (ValidateHarvestAmount(tree.Leafs, amount))
+					_harvestStrategy = new MedicineHarvestStrategy();
+					Console.WriteLine("Amount of medicine want to harvest?");
+					amount = Validate.InputDouble();
+					if (Validate.ValidateHarvestAmount(tree.Leafs, amount))
                     {
-                        return HarvestWithAmount(tree, amount);
-                    }
-
+						List<Product> harvested = _harvestStrategy.Harvest(tree, amount);
+						Products.AddRange(harvested);
+					}
                     break;
             }
-
-            return new List<Product>();
         }
 
-        private void PrintMenu()
+        public static void PrintMenu() // Redo menu
         {
-            Console.WriteLine(
-                "|-----------------------------------------------------------------------------------------------|");
-            Console.WriteLine("|				*______* Harvest Tree Option Menu *______*				|");
-            Console.WriteLine(
-                "|-----------------------------------------------------------------------------------------------|");
+			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
+			Console.WriteLine("|				*______* Harvest Tree Option Menu *______*				|");
+			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
 
-            var table = new ConsoleTable("Option", "Description");
+			var table = new ConsoleTable("Option", "Description");
 
-            table.AddRow("1", "Harvest Fruit");
-            table.AddRow("2", "Harvest Wood");
-            table.AddRow("3", "Harvest Medicine Leaf");
-            table.AddRow("0", "Return to main menu");
+			table.AddRow("1", "Harvest Fruit");
+			table.AddRow("2", "Harvest Wood");
+			table.AddRow("3", "Harvest Medicine Leaf");
+			table.AddRow("0", "Return to main menu");
 
-            table.Write(Format.Alternative);
-        }
+			table.Write(Format.Alternative);
+		}
 
-        private bool ValidateHarvestAmount(double treeResources, double harvestAmount)
+        public static Tree SelectTree(List<Tree> Garden)
         {
-            if (Math.Abs(harvestAmount - treeResources) < Constant.TOLERANCE) // comparing 2 floats should use epsilon
+            if(Garden.Count <= 0)
             {
-                Console.WriteLine($"Harvested all resources, do you want to proceed? (Y/N)");
-                var confirm = Console.ReadLine();
-                if (!string.IsNullOrEmpty(confirm))
-                {
-                    if (confirm.ToLower() != "yes" && confirm.ToLower() != "y")
-                    {
-                        if (confirm.ToLower() == "no" || confirm.ToLower() == "n")
-                            return false;
-                    }
-                    else
-                        return true;
-                }
-            }
-            else if (harvestAmount > treeResources)
-            {
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine($"Can't harvest over {treeResources} resources!");
-                Console.ResetColor();
-                return false;
-            }
-
-            return true;
+				Console.WriteLine($"There are {Garden.Count} tree in the garden, plant some tree first");
+                return null;
+			}
+			Console.WriteLine($"There are {Garden.Count} tree in the garden, select tree you want to harvest:");
+			int index = Validate.InputInterger();
+			return Garden[index-1];
         }
-    }
+
+	}
 }
+ 

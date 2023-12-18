@@ -3,35 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TreeClassLibrary;
 using TreeClassLibrary.Products;
 
 namespace TreeClassLibrary.Strategy
 {
     public class WoodHarvestStrategy : IHarvestStrategy
     {
-	    //
-	    // For more wood product information, refer https://www.arborday.org/trees/righttreeandplace/size.cfm
-	    //
-		public IEnumerable<Product> Harvest(Tree tree, int amount)
+		public List<Product> Harvest(Tree tree, double amount)
 		{
-			
-			var remain = tree.Weight - amount;
+			double remain = tree.Weight - amount;
 			if (remain < 0)
 			{
-				Console.WriteLine($"Tree not high enough to harvest {amount} of woods, please grow tree before harvest."); // TO DO: Need update message
+				Console.WriteLine($"Tree not have enough products to harvest {amount} kilograms of woods, please grow the tree before harvesting.");
 				return new List<Product>();
 			}
-			
-			
-			
+
 			tree.Weight = remain;
-			tree.HealthStatus = tree.GetTreeHealthStatus();
+			tree.HealthStatus = tree.UpdateTreeStatus();
+
 			Console.ForegroundColor = ConsoleColor.DarkYellow;
-			Console.WriteLine($"Harvested {amount} kilogram of woods, tree have {tree.Weight} kilogram left.");// TO DO: Need update message
+			Console.WriteLine($"Harvested {amount} kilograms of woods, tree has {tree.Weight} kilograms left.");
 			tree.GetTreeStatus();
-			// More logic create product here
+
+			// More logic to create products here
+			List<Product> harvestedProducts = new List<Product>();
+			for (int i = 0; i < amount; i++)
+			{
+				harvestedProducts.Add(new Wood("Brown", "Red Oak"));
+			}
+
 			Console.ResetColor();
-			return Enumerable.Range(1, amount).Select(i => new Wood("Brown", "Red Oak"));
+			return harvestedProducts;
 		}
-    }
+
+	}
 }

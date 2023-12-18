@@ -8,20 +8,23 @@ namespace TreeClassLibrary.Products
 {
     public class Fruit : Product
     {
-        public string Taste { get; set; }
+		public string Taste { get; set; }
 
-        public Fruit(string taste) : base()
-        {
-            Taste = taste;
-        }
-        
+		public Fruit() {
+			Taste = "Sweet";
+		}
+
+		public Fruit(string taste) : base()
+		{
+			Taste = taste;
+		}
 		public override void Use()
-        {
-            base.Use();
-            //logic use Fruit or others
-        }
+		{
+			base.Use();
+			//logic use Fruit or others
+		}
 
-        public void MakeGift() 
+		public void MakeGift()
         {
             // login quà
         }

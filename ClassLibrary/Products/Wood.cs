@@ -8,34 +8,32 @@ namespace TreeClassLibrary.Products
 {
     public class Wood : Product
     {
-        private string _hardness;
-        private string _color;
-
-        public string Hardness
+        private string hardness;
+        private string color;
+        public string Hardness { get => hardness; set => value = hardness; }
+        public string Color { get => color; set => value = color; }
+        public double amount;
+        public Wood()
         {
-            get => _hardness;
-            set =>  _hardness = value; // field = value NOT value = field ???????
+            Hardness = "Tough";
+            Color = "Dark Brown";
+
+		}
+
+
+		public Wood(double amount)
+		{
+            this.amount = amount;
+		}
+
+        public Wood(string hardness, string color)
+        {
+            Hardness = hardness;
+            Color = color;
+
         }
 
-        public string Color
-        {
-            get => _color;
-            set => _color = value;
-        }
-        
-        public Wood(string color)
-        {
-            _hardness = string.Empty;
-            _color = string.Empty;
-        }
-
-		public Wood(string color, string hardness)
-        {
-            _color = color;
-            _hardness = hardness;
-        }
-
-		public void MakeFurniture()
+        public void MakeFurniture()
         {
             // furniture making logic
         }
@@ -45,7 +43,7 @@ namespace TreeClassLibrary.Products
             // logic burn
         }
 
-        public override void Use()
+        public void Use()
         {
             throw new NotImplementedException();
         }

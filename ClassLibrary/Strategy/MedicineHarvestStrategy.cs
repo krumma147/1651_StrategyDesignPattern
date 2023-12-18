@@ -4,34 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TreeClassLibrary.Products;
+//using Tree1651PJ;
+using TreeClassLibrary.Strategy;
 
 namespace TreeClassLibrary.Strategy
 {
     public class MedicineHarvestStrategy : IHarvestStrategy
     {
-		public IEnumerable<Product> Harvest(Tree tree, int amount)
+		public List<Product> Harvest(Tree tree, double amount)
 		{
-			var remain = tree.Leafs - amount;
+			double remain = tree.Leafs - amount;
 			if (remain < 0)
 			{
-				Console.WriteLine($"Tree not have enough of leafs to harvest {amount} gram of leafs, please grow tree before harvest.");
-				return new List<Product>();
-			}
-			if (remain == 0)
-			{
-				Console.WriteLine($"Harvested all amount, do you want to proceed? (Y/N)");
-				// Validate amount and turn tree condition to bad if harvest all
+				Console.WriteLine($"Tree does not have enough leafs to harvest {amount} grams, please grow the tree before harvesting.");
 				return new List<Product>();
 			}
 
 			tree.Leafs = remain;
-			tree.HealthStatus = tree.GetTreeHealthStatus();
+			tree.HealthStatus = tree.UpdateTreeStatus();
+
 			Console.ForegroundColor = ConsoleColor.DarkYellow;
-			Console.WriteLine($"Harvested {amount} of leafs, tree has {tree.Weight} leafs left.");
+			Console.WriteLine($"Harvested {amount} grams of leafs, tree has {tree.Leafs} grams of leafs left.");
 			Console.WriteLine(tree.GetTreeStatus());
-			// More logic create product here
+
+			// More logic to create products here
+			List<Product> harvestedProducts = new List<Product>();
+			for (int i = 0; i < amount; i++)
+			{
+				harvestedProducts.Add(new Medicine());
+			}
+
 			Console.ResetColor();
-			return Enumerable.Range(0, amount).Select(i => new Medicine()).ToList(); // refer https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.range
+			return harvestedProducts;
 		}
 
 		//Validate amount of leaf want to harvest

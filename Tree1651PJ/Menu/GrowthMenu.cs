@@ -11,19 +11,21 @@ namespace TreeManagerConsoleApp.Menu
 {
     public class GrowthMenu
     {
-        public void GrowthOption(Tree tree)
+        public static void GrowthOption(List<Tree> Garden)
         {
+            Tree tree = HarvestMenu.SelectTree(Garden);
+			if (tree == null) return;
 			int option;
             do
             {
                 PrintMenu();
                 Console.WriteLine("Select growth tree option:");
-                option = ConsoleCommons.InputInteger();
+                option = Validate.InputInterger();
                 GrowthSelect(option, tree);
             } while (option != 0);
         }
 
-        private void GrowthSelect(int option, Tree tree)
+        public static void GrowthSelect(int option, Tree tree)
         {
             switch (option)
             {
@@ -44,7 +46,7 @@ namespace TreeManagerConsoleApp.Menu
             }
         }
 
-        private void PrintMenu()
+        public static void PrintMenu()
         {
 			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
 			Console.WriteLine("|				*______* Growth Tree Option Menu *______*				|");

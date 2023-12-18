@@ -1,9 +1,10 @@
 ﻿using TreeClassLibrary.Products;
+using TreeClassLibrary;
 
 namespace TreeClassLibrary.Strategy
 {
     public interface IHarvestStrategy
     {
-        IEnumerable<Product> Harvest(Tree tree, int amount);
+        List<Product> Harvest(Tree tree, double amount);
     }
 }

@@ -1,14 +1,18 @@
-﻿using TreeManagerConsoleApp.Menu;
+﻿using TreeClassLibrary;
+using TreeClassLibrary.Products;
+using TreeManagerConsoleApp.Menu;
 
 namespace TreeManagerConsoleApp
 {
-	public static class Program
+    class Program
 	{
-		public static void Main(string[] args)
-        {
-	        var mainMenu = new MainMenu();
-	        mainMenu.MainProgram();
-        }
+        public static List<Tree> Garden = new List<Tree>();
+
+        static void Main(string[] args)
+		{
+			// Display the number of command line arguments.
+			MainMenu.MenuOption(Garden);
+		}
 
 	}
 }
