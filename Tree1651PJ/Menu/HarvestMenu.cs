@@ -75,7 +75,7 @@ namespace TreeManagerConsoleApp.Menu
             }
         }
 
-        public static void PrintMenu()
+        public static void PrintMenu() // Redo menu
         {
 			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
 			Console.WriteLine("|				*______* Harvest Tree Option Menu *______*				|");
