@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tree1651PJ;
-using TreeClassLibrary.Product;
+using TreeClassLibrary.Products;
 using TreeClassLibrary.Strategy;
-//using TreeManagerConsoleAp;
 
-namespace Tree1651PJ
+namespace TreeClassLibrary
 {
     public enum HealthStatus
     {
@@ -23,36 +21,31 @@ namespace Tree1651PJ
         private int fruits;
         private double leafs;
         private string name;
-        private double height;
-		private HealthStatus healthStatus;
-		protected IHarvestStrategy harvestStrategy;
+        private double weight;
+        private HealthStatus healthStatus;
 
-		public int Fruits { get=>fruits; set=> fruits = value; }
-        public double Leafs {  get=>leafs; set=>leafs = value; }
-		public string Name { get => name; private set =>name = value; }
-		public double Height { get => height; set => height = value; }
+
+        public int Fruits { get => fruits; set => fruits = value; }
+        public double Leafs { get => leafs; set => leafs = value; }
+        public string Name { get => name; private set => name = value; }
+        public double Weight { get => weight; set => weight = value; }
         public HealthStatus HealthStatus { get => healthStatus; set => healthStatus = value; }
 
-		public void SetHarvestStrategy(IHarvestStrategy strategy)
-		{
-			harvestStrategy = strategy;
-		}
-
-		public Tree()
+        public Tree()
         {
-			Fruits = 5;
-			Leafs = 10;
-			Name = "Indochina Dragonplum Tree";
-			Height = 5;
-			HealthStatus = HealthStatus.Good;
-		}
+            Fruits = 5;
+            Leafs = 10;
+            Name = "Indochina Dragonplum Tree";
+            Weight = 5;
+            HealthStatus = HealthStatus.Good;
+        }
 
         public Tree(int fruits, double leafs, string name, double height, HealthStatus healthStatus)
         {
             Fruits = fruits;
             Leafs = leafs;
             Name = name;
-            Height = height;
+            Weight = height;
             HealthStatus = healthStatus;
         }
 
@@ -73,67 +66,48 @@ namespace Tree1651PJ
         public void Fertilizing()
         {
             CountTime();
-			Fruits += 3;
-			Leafs += 4;
-			Height += 2;
+            Fruits += 3;
+            Leafs += 4;
+            Weight += 2;
 			HealthStatus = UpdateTreeStatus();
-			Console.WriteLine(GetTreeStatus());
+            Console.WriteLine(GetTreeStatus());
 
-		}
+        }
 
         public void AbsorbCO2()
         {
             CountTime();
-			Leafs += 2;
-			Height += 1;
+            Leafs += 5;
+            Weight += 2;
 			HealthStatus = UpdateTreeStatus();
-			Console.WriteLine(GetTreeStatus());
-		}
+            Console.WriteLine(GetTreeStatus());
+        }
 
         public void Watering()
         {
             CountTime();
-			Height += 2;
-			if (Height >= 10)
-			{
-				Console.WriteLine("Tree reach maximun height");
-                Height = 10;
-			}
-			healthStatus = UpdateTreeStatus();
-			Console.WriteLine(GetTreeStatus());
-		}
+            Weight += 5;
+            if (Weight >= 30)
+            {
+                Console.WriteLine("Tree reach maximun weight of wood");
+                Weight = 30;
+            }
+            healthStatus = UpdateTreeStatus();
+            Console.WriteLine(GetTreeStatus());
+        }
 
         public string GetTreeStatus()
         {
-            return $"Tree {Name} have {Fruits} fruits, {Leafs} leafs, {Height} meters tall and have {HealthStatus} status";
+            return $"Tree {Name} have {Fruits} fruits, {Leafs} leafs, {Weight} kilograms of wood and is in the status {HealthStatus}";
         }
-
-		public void Harvest(double amount)
-		{
-			IProduct product = harvestStrategy.Harvest(this, amount);
-			Console.WriteLine($"Harvested: {product.GetType().Name}");
-		}
 
         public HealthStatus UpdateTreeStatus()
         {
-            HealthStatus output = HealthStatus.Good;
-
-            if (fruits <= 2 && leafs <= 3 && height <= 1)
-            {
-                output = HealthStatus.Bad;
-            } else if (fruits < 3)
-            {
-				output = HealthStatus.LackFertilize;
-			} else if (leafs < 5)
-            {
-                output = HealthStatus.LackCo2;
-            }
-            else if (height < 3)
-            {
-                output = HealthStatus.LackWater;
-            }
-            return output;
-
-		}
-	}
+            return (Fruits <= 2 && Leafs <= 3 && weight <= 1) ? HealthStatus.Bad
+                : (Fruits < 3) ? HealthStatus.LackFertilize
+                : (Leafs < 5) ? HealthStatus.LackCo2
+                : (weight < 3) ? HealthStatus.LackWater
+                : HealthStatus.Good;
+        }
+    }
 }

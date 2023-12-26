@@ -22,13 +22,17 @@ namespace TreeManagerConsoleApp
 			do
 			{
 				name = Console.ReadLine();
-				if (!IsValidName(name))
+				if (!string.IsNullOrEmpty(name))
 				{
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid name! Please enter a name with letters only (a-z).");
-                    Console.ResetColor();
+					if (IsValidName(name))
+					{
+						break;
+					}
                 }
-			} while (!IsValidName(name));
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid name! Please enter a name with letters only (a-z).");
+                Console.ResetColor();
+            } while (!IsValidName(name));
 
 			return name;
 		}
@@ -103,16 +107,17 @@ namespace TreeManagerConsoleApp
 			{
 				Console.WriteLine($"Harvested all resources, do you want to proceed? (Y/N)");
 				string confirm = Console.ReadLine();
-				if(confirm.ToLower() == "yes" || confirm.ToLower() == "y") return true;
-				else if(confirm.ToLower() == "no" || confirm.ToLower() == "n") return false;
-			}else if (harvestAmount > treeResources)
+				if (confirm.ToLower() == "yes" || confirm.ToLower() == "y") return true;
+				else if (confirm.ToLower() == "no" || confirm.ToLower() == "n") return false;
+			}
+			else if (harvestAmount > treeResources)
 			{
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine($"Can't harvest over {treeResources} resources!");
-                Console.ResetColor();
-                return false;
+				Console.ForegroundColor = ConsoleColor.DarkYellow;
+				Console.WriteLine($"Can't harvest over {treeResources} resources!");
+				Console.ResetColor();
+				return false;
 			}
 			return true;
-        }
+		}
 	}
 }

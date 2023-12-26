@@ -4,15 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tree1651PJ;
+using TreeClassLibrary;
 
 namespace TreeManagerConsoleApp.Menu
 {
     public class PlantMenu
     {
-
-        //input tree
-        public static Tree inputTree()
+        public static Tree InputTree()
         {
             Console.WriteLine("Enter the name of the tree:");
             string name = Validate.InputName();
@@ -23,7 +21,7 @@ namespace TreeManagerConsoleApp.Menu
             Console.WriteLine("Enter the number of leafs:");
             int leafs = Validate.InputInterger();
 
-            Console.WriteLine("Enter the height of the tree:");
+            Console.WriteLine("Enter the woods weight of the tree:");
             double height = Validate.InputDouble();
 
             Console.WriteLine("Enter the health status of the tree (1 for Good, 2 for Fair, 3 for Poor):");
@@ -32,14 +30,12 @@ namespace TreeManagerConsoleApp.Menu
             return tree;
         }
 
-        //plant tree
-        public static void plantTree(List<Tree> Garden)
+        public static void PlantTree(List<Tree> Garden)
         {
-            Garden.Add(inputTree());
+            Garden.Add(InputTree());
         }
 
-        //plant tree in empty index of graden
-        public static void quickPlant(List<Tree> Garden)
+        public static void QuickPlant(List<Tree> Garden)
         {
 			Tree tree = new Tree();
 			Garden.Add(tree);
@@ -47,8 +43,6 @@ namespace TreeManagerConsoleApp.Menu
 
         public static void PlantOption(List<Tree> Garden)
         {
-			//Console.WriteLine("");
-			//Console.BackgroundColor = ConsoleColor.DarkBlue;
 			int option;
 			do
             {
@@ -56,10 +50,7 @@ namespace TreeManagerConsoleApp.Menu
                 Console.WriteLine("Select plant tree option:");
                 option = Validate.InputInterger();
                 PlantSelect(option, Garden);
-                /*Console.Clear();*/
             } while (option != 0);
-			//Console.ResetColor();
-			//Console.WriteLine();
 		}
 
         public static void PlantSelect(int option, List<Tree> Garden)
@@ -70,11 +61,11 @@ namespace TreeManagerConsoleApp.Menu
                     Console.WriteLine("Exit the plan tree menu");
                     return;
                 case 1:
-                    plantTree(Garden);
+                    PlantTree(Garden);
                     Console.WriteLine($"New Tree added, garden have {Garden.Count} trees");
                     return;
                 case 2:
-                    quickPlant(Garden);
+                    QuickPlant(Garden);
 					Console.WriteLine($"New Tree added, garden have {Garden.Count} trees");
 					break;
             }
@@ -85,14 +76,11 @@ namespace TreeManagerConsoleApp.Menu
 			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
 			Console.WriteLine("|				*______* Plant Tree Option Menu *______*				|");
 			Console.WriteLine("|-----------------------------------------------------------------------------------------------|");
-
 			var table = new ConsoleTable("Option", "Description");
-
 			table.AddRow("1", "Plant new tree");
 			table.AddRow("2", "Quick plant new tree");
 			table.AddRow("0", "Return to main menu");
-
 			table.Write(Format.Alternative);
 		}
-    }
+	}
 }

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tree1651PJ;
-using TreeClassLibrary.Product;
+﻿using TreeClassLibrary.Products;
+using TreeClassLibrary;
 
 namespace TreeClassLibrary.Strategy
 {
     public interface IHarvestStrategy
     {
-        IProduct Harvest(Tree tree, double amount);
+        List<Product> Harvest(Tree tree, double amount);
     }
 }

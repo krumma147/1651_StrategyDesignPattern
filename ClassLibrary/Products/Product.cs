@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TreeClassLibrary.Product
+namespace TreeClassLibrary.Products
 {
-    public interface IProduct
+    public abstract class Product
     {
-        void Use();
-    }
+		public abstract void Use();
+	}
 }
